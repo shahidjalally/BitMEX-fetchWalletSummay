@@ -56,9 +56,6 @@ out = []
 while True:
     data = connector._curl_bitmex(path="user/walletSummary", verb="GET", query=query, timeout=10)
     out.extend(data)
-    query['start'] += count
-    if len(data) < count:
-        break
 
 # Write to stdout
 if fileType == 'csv':
