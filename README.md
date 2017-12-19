@@ -1,5 +1,5 @@
-# BitMEX-fetchWalletSummay
-BitMEX Exchange API script add-on to fetch Wallet Summ
+# BitMEX-fetchWalletSummary
+BitMEX Exchange script add-on to fetch Wallet Summary
 
 This little payton script is required https://github.com/BitMEX/easy-data-scripts repository to work.
 
