@@ -37,25 +37,22 @@ if(args.filter):
 # Create connector
 connector = bitmex.BitMEX(base_url=API_BASE, apiKey=args.apiKey, apiSecret=args.apiSecret)
 
-# Do wallet summary query
-
-query =   {
-    "transactID": "string",
-    "account": 0,
-    "currency": "string",
-    "transactType": "string",
-    "amount": 0,
-    "fee": 0,
-    "transactStatus": "string",
-    "address": "string",
-    "tx": "string",
-    "text": "string"
-  }
+# Do trade history query
+count = 500  # max API will allow
+query = {
+    'reverse': 'true',
+    'start': 0,
+    'count': count,
+    'filter': args.filter
+}
 
 out = []
 while True:
     data = connector._curl_bitmex(path="user/walletSummary", verb="GET", query=query, timeout=10)
     out.extend(data)
+    query['start'] += count
+    if len(data) < count:
+        break
 
 # Write to stdout
 if fileType == 'csv':
